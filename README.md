@@ -117,6 +117,7 @@ summernote.js - Renderer.js (Generate markup) - Locale.js (Locale object)
 ```bash
 # grunt-cli is need by grunt; you might have this installed already
 npm install -g grunt-cli
+# install project dependencies
 npm install
 
 # build full version of summernote: dist/summernote.js

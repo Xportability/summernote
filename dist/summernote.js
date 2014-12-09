@@ -6,7 +6,7 @@
  * Copyright 2013-2014 Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license./
  *
- * Date: 2014-12-07T15:37Z
+ * Date: 2014-12-09T17:06Z
  */
 (function (factory) {
   /* global define */
@@ -1205,6 +1205,8 @@
       isParaInline: isParaInline,
       isList: isList,
       isTable: makePredByNodeName('TABLE'),
+      isTableRow: makePredByNodeName('TR'),
+      isTableBody: makePredByNodeName('TBODY'),
       isCell: isCell,
       isBlockquote: isBlockquote,
       isBodyContainer: isBodyContainer,
@@ -5309,6 +5311,12 @@
             }
           });
         }
+        // initialize any addons
+        if (options.addons) {
+          $(options.addons).each(function (idx, addon) {
+            addon.install(info);
+          });
+        }
       });
 
       // focus on first editable element
@@ -5320,6 +5328,10 @@
       // callback on init
       if (this.length && options.oninit) {
         options.oninit();
+      }
+      // register in caller window
+      if (window.parent) {
+        window.parent.summernote = this;
       }
 
       return this;
@@ -5376,6 +5388,9 @@
       });
 
       return this;
-    }
+    },
+    Dom: dom,
+    Range: range,
+    Renderer: renderer
   });
 }));

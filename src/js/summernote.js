@@ -101,6 +101,12 @@ define([
             }
           });
         }
+        // initialize any addons
+        if (options.addons) {
+          $(options.addons).each(function (idx, addon) {
+            addon.install(info);
+          });
+        }
       });
 
       // focus on first editable element
@@ -112,6 +118,10 @@ define([
       // callback on init
       if (this.length && options.oninit) {
         options.oninit();
+      }
+      // register in caller window
+      if (window.parent) {
+        window.parent.summernote = this;
       }
 
       return this;
@@ -168,6 +178,9 @@ define([
       });
 
       return this;
-    }
+    },
+    Dom: dom,
+    Range: range,
+    Renderer: renderer
   });
 });

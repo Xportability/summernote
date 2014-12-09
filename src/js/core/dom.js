@@ -807,6 +807,8 @@ define([
       isParaInline: isParaInline,
       isList: isList,
       isTable: makePredByNodeName('TABLE'),
+      isTableRow: makePredByNodeName('TR'),
+      isTableBody: makePredByNodeName('TBODY'),
       isCell: isCell,
       isBlockquote: isBlockquote,
       isBodyContainer: isBodyContainer,
